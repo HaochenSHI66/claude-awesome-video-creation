@@ -35,10 +35,10 @@ const wrap = (text: string, cols: number) => {
 // S06: install a community skill (Clip A slot).
 // ---------------------------------------------------------------------------------------------
 const S06_OUT = [
-  'Cloning github.com/Leonxlnx/cinetic',
-  'Found 1 skill: cinetic',
+  'Cloning github.com/HaochenSHI66/claude-awesome-video-creation',
+  'Found 1 skill: claude-awesome-video-creation',
   'Target agent: Claude Code',
-  'Copying skills/cinetic -> .claude/skills/cinetic',
+  '→ .claude/skills/claude-awesome-video-creation',
   '✓ Installed 1 skill',
 ];
 export const S06_OUT_AT = (i: number) => CUE.s06Fast + 8 + i * 9;
@@ -107,7 +107,7 @@ export const S06: React.FC = () => {
               {real ? (
                 <ClipVideo clip={CLIPS.A} />
               ) : (
-                <div style={{ position: 'absolute', left: 30, top: 28, ...mono(25) }}>
+                <div style={{ position: 'absolute', left: 26, top: 26, ...mono(21) }}>
                   <div>
                     <Sh text={`% ${S06_CMD.slice(0, n)}`} />
                     {f < L(CUE.s06Fast) && <Caret on={Math.floor(f / 20) % 2 === 0 || n < S06_CMD.length} h={30} w={15} />}
@@ -122,7 +122,7 @@ export const S06: React.FC = () => {
                   {f >= L(CUE.s06Done) + 10 && (
                     <div style={{ marginTop: 26, ...enter(f, L(CUE.s06Done) + 10, 20, 10, 0) }}>
                       <Sh text="% ls .claude/skills" />
-                      <div style={{ color: C.violet, marginTop: 6 }}>cinetic/</div>
+                      <div style={{ color: C.violet, marginTop: 6 }}>claude-awesome-video-creation/</div>
                     </div>
                   )}
                 </div>
@@ -130,8 +130,11 @@ export const S06: React.FC = () => {
               {!real && <Recon />}
             </Win>
           </div>
-          <div style={{ marginTop: 22, ...sans(23, 400), color: C.muted, ...enter(f, L(CUE.s06Done), 24, 10, 0) }}>
-            Any skill on GitHub works: <span style={{ ...mono(23) }}><Sh text="npx skills add <owner/repo>" /></span>
+          <div style={{ marginTop: 22, padding: 2, borderRadius: 16, background: `linear-gradient(100deg, ${C.cyan}, ${C.violet}, ${C.pink})`, ...enter(f, L(CUE.s06Type) + 10, 24, 12, 0) }}>
+            <div style={{ borderRadius: 14, background: a(C.ink, 0.92), padding: '12px 18px' }}>
+              <div style={{ ...sans(22, 600), color: C.gold }}>★ my own skill · a reusable video workflow</div>
+              <div style={{ ...mono(21, 600), color: C.text, marginTop: 4 }}>github.com/HaochenSHI66/claude-awesome-video-creation</div>
+            </div>
           </div>
         </div>
         {fast && <Badge text="4×" style={{ left: 'auto', right: 96, top: 52 }} />}
@@ -148,8 +151,8 @@ type TL = { t: number; text: string; tone?: 'muted' | 'text' | 'tool' | 'ok' | '
 const RESP: TL[] = [
   { t: 18, text: '● Read(script/storyboard.md)', tone: 'tool' },
   { t: 34, text: '● Read(script/design_system.md)', tone: 'tool' },
-  { t: 52, text: '● Skill(cinetic)', tone: 'skill' },
-  { t: 58, text: '  ⎿  Loaded .claude/skills/cinetic/SKILL.md', tone: 'muted' },
+  { t: 52, text: '● Skill(claude-awesome-video-creation)', tone: 'skill' },
+  { t: 58, text: '  ⎿  Loaded .claude/skills/claude-awesome-video-creation/SKILL.md', tone: 'muted' },
   { t: 140, text: 'Plan: 12 scenes, 120 BPM grid, drop at 1:20.', tone: 'text' },
   { t: 190, text: '● Write(src/timeline.ts)', tone: 'tool' },
   { t: 260, text: '● Write(src/scenes/Open.tsx)', tone: 'tool' },
@@ -235,12 +238,12 @@ export const S07: React.FC = () => {
                   <div key={i} style={{ height: SIZE * 1.45, color: toneColor(r.tone), position: 'relative' }}>
                     <ToolLine text={r.text} />
                     {i === skillIdx && fzK > 0 && (
-                      <div style={{ position: 'absolute', left: -16, top: -8, width: 1010, height: SIZE * 2.9 + 16, border: `2px solid ${a(C.ember, fzK)}`, borderRadius: 10, boxShadow: `0 0 40px ${a(C.ember, 0.25 * fzK)}` }} />
+                      <div style={{ position: 'absolute', left: -16, top: -8, width: 1400, height: SIZE * 2.9 + 16, border: `2px solid ${a(C.ember, fzK)}`, borderRadius: 10, boxShadow: `0 0 40px ${a(C.ember, 0.25 * fzK)}` }} />
                     )}
                     {i === skillIdx && fzK > 0 && (
-                      <div style={{ position: 'absolute', left: 1030, top: 0, opacity: fzK }}>
-                        <div style={{ ...mono(36, 600), color: C.ember, textShadow: glow(0.5) }}>← skill loaded</div>
-                        <div style={{ ...mono(26), color: C.text, marginTop: 6 }}>matched by its description</div>
+                      <div style={{ position: 'absolute', left: 1424, top: 2, opacity: fzK }}>
+                        <div style={{ ...mono(32, 600), color: C.ember, textShadow: glow(0.5) }}>← skill loaded</div>
+                        <div style={{ ...mono(22), color: C.text, marginTop: 6 }}>matched by its description</div>
                       </div>
                     )}
                   </div>
@@ -271,7 +274,7 @@ export const S07: React.FC = () => {
         </div>
         {f >= fzEnd + 10 && (
           <div style={{ position: 'absolute', left: 620, top: 52, ...mono(30, 500), color: C.muted, padding: '8px 18px', borderRadius: 10, background: C.surface2, border: `1px solid ${C.line2}`, ...enter(f, fzEnd + 10, 24, 10, 0) }}>
-            or call it directly: <span style={{ color: C.ember, fontWeight: 600 }}>/cinetic</span>
+            or call it directly: <span style={{ color: C.ember, fontWeight: 600 }}>/claude-awesome-video-creation</span>
           </div>
         )}
         {S07_CARDS.map((at, i) => {

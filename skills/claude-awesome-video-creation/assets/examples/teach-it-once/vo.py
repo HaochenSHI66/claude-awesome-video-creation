@@ -38,11 +38,11 @@ VOICE = 'en-US-AndrewMultilingualNeural'
 SR = 48000
 
 # Scene ends (seconds) from the storyboard; a VO may run up to the end of its scene.
-SCENE_START = {'S01': 0, 'S02': 6, 'S03': 13, 'S04': 22, 'S05': 33.5, 'S06': 46, 'S07': 56, 'S08': 68, 'S09': 74, 'S10': 79, 'S11': 91.5, 'S12': 97.5}
-SCENE_END = {'S01': 6, 'S02': 13, 'S03': 22, 'S04': 33.5, 'S05': 46, 'S06': 56, 'S07': 68, 'S08': 74, 'S09': 79, 'S10': 91.5, 'S11': 97.5, 'S12': 114}
+SCENE_START = {'S01': 0, 'S02': 6, 'S03': 13, 'S04': 22, 'S05': 33.5, 'S06': 46, 'S07': 58, 'S08': 70, 'S09': 76, 'S10': 81, 'S11': 93.5, 'S12': 99.5}
+SCENE_END = {'S01': 6, 'S02': 13, 'S03': 22, 'S04': 33.5, 'S05': 46, 'S06': 58, 'S07': 70, 'S08': 76, 'S09': 81, 'S10': 93.5, 'S11': 99.5, 'S12': 116}
 
 # Spoken forms for the synthetic voice only (captions keep the written text).
-SPOKEN = [(r'SKILL\.md', 'skill dot M D'), (r'^…', ''), (r'…$', '...'), (r' — ', ', ')]
+SPOKEN = [(r'claude-awesome-video-creation', 'Claude awesome video creation'), (r'SKILL\.md', 'skill dot M D'), (r'^…', ''), (r'…$', '...'), (r' — ', ', ')]
 
 
 def ts(s):
@@ -177,8 +177,8 @@ def main():
         else:
             words = spread(L['text'], on, off)
         speech = off - on
-        # S08 must be done before the suck-in to the drop (73.1 s)
-        limit = 73.05 if L['id'] == 'S08' else L['sceneEnd'] - 0.15
+        # S08 must be done before the suck-in to the drop (75.1 s)
+        limit = 75.05 if L['id'] == 'S08' else L['sceneEnd'] - 0.15
         land_end = L['start'] + speech
         at = L['start']
         if land_end > limit:

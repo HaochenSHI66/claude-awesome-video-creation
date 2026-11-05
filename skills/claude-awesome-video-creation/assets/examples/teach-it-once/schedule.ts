@@ -40,7 +40,7 @@ export const S06_KEYS = typeTimes(S06_CMD, CUE.s06Type, 34, 's06');
 
 // S07: the full prompt. First sentence in real time, the rest at 16x (badge on screen).
 export const PROMPT_FULL =
-  'make a launch video about agent skills. Use the cinetic skill. Follow script/storyboard.md, script/design_system.md and script/voiceover.txt exactly. Write all scenes in React, compose original music and sound effects in code, add captions from the voiceover, place my vo_*.wav files at each scene start, and render 1920x1080 60fps. Keep it under 1:55.';
+  'make a launch video about agent skills. Use the claude-awesome-video-creation skill. Follow script/storyboard.md, script/design_system.md and script/voiceover.txt exactly. Write all scenes in React, compose original music and sound effects in code, add captions from the voiceover, place my vo_*.wav files at each scene start, and render 1920x1080 60fps. Keep it under 1:55.';
 export const S07_SPLIT = PROMPT_FULL.indexOf('.') + 1;
 const s07a = typeTimes(PROMPT_FULL.slice(0, S07_SPLIT), CUE.s07TypeAt, 28, 's07a');
 const s07aEnd = s07a[s07a.length - 1] + 4;

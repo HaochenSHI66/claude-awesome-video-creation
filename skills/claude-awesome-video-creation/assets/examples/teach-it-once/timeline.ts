@@ -34,8 +34,8 @@ export const q8 = (f: number) => Math.round(f / (BEAT / 2)) * (BEAT / 2);
 /** Snap a frame to the nearest beat. */
 export const q4 = (f: number) => Math.round(f / BEAT) * BEAT;
 
-export const TAIL = 0; // the film ends on black at 1:54 exactly; the score's tail is inside S12
-export const TOTAL = b(58); // 6840 f = 114.000 s
+export const TAIL = 0; // the film ends on black at 1:56 exactly; the score's tail is inside S12
+export const TOTAL = b(59); // 6960 f = 116.000 s
 
 // ---------------------------------------------------------------------------------------------
 // Scenes (storyboard.md): contiguous, bar-aligned, [from, from + dur).
@@ -47,13 +47,13 @@ export const SCENE = {
   s03: sc(13, 22), // 0:13 the problem
   s04: sc(22, 33.5), // 0:22 anatomy of a skill + where it lives
   s05: sc(33.5, 46), // 0:33.5 the three loading stages
-  s06: sc(46, 56), // 0:46 STEP 1 install Claude Code, STEP 2 add a skill (Clip A)
-  s07: sc(56, 68), // 0:56 STEP 3 just ask (Clip B part 1)
-  s08: sc(68, 74), // 1:08 render timelapse (Clip B part 2)
-  s09: sc(74, 79), // 1:14 the reveal (DROP)
-  s10: sc(79, 91.5), // 1:19 write your own (Clip C)
-  s11: sc(91.5, 97.5), // 1:31.5 share it
-  s12: sc(97.5, 114), // 1:37.5 cheat sheet, go deeper + contact, tagline, vote, end card
+  s06: sc(46, 58), // 0:46 STEP 1 install Claude Code, STEP 2 add a skill (Clip A)
+  s07: sc(58, 70), // 0:56 STEP 3 just ask (Clip B part 1)
+  s08: sc(70, 76), // 1:08 render timelapse (Clip B part 2)
+  s09: sc(76, 81), // 1:14 the reveal (DROP)
+  s10: sc(81, 93.5), // 1:19 write your own (Clip C)
+  s11: sc(93.5, 99.5), // 1:31.5 share it
+  s12: sc(99.5, 116), // 1:37.5 cheat sheet, go deeper + contact, tagline, vote, end card
 };
 export type SceneId = keyof typeof SCENE;
 
@@ -154,7 +154,7 @@ export const CUE = {
   s08Ramp: S.s09.from - 120, // everything accelerates
   s08Black: S.s09.from - 30, // the suck-in to the drop (no dead air)
   // S09 the reveal
-  drop: S.s09.from, // 74.000 s
+  drop: S.s09.from, // 76.000 s
   s09Settle: S.s09.from + 240,
   s09Line: vs('s09', 'is'),
   s09Now: vs('s09', 'right'),
@@ -190,7 +190,8 @@ CUE.s07FreezeEnd = CUE.s07Freeze + 45; // 0.75 s freeze (held long enough to rea
 CUE.s07Ramp8 = CUE.s07FreezeEnd + 30;
 CUE.s07Ramp16 = CUE.s07FreezeEnd + 120;
 // S06 step 2: type the install command at 34 cps, then the output runs at 4x
-export const S06_CMD_TEXT = 'npx skills add Leonxlnx/cinetic';
+export const SKILL_REPO = 'HaochenSHI66/claude-awesome-video-creation';
+export const S06_CMD_TEXT = `npx skills add ${SKILL_REPO}`;
 CUE.s06Type = CUE.s06Step2 + 14;
 CUE.s06Fast = CUE.s06Type + Math.round((S06_CMD_TEXT.length / 34) * FPS) + 6;
 CUE.s06Done = CUE.s06Fast + 8 + 4 * 9 + 2;
@@ -294,12 +295,12 @@ export const COPY: Copy[] = [
   ui('s06.run', 'cd my-project && claude', CUE.s06Cmd3, S.s07.from),
   cp('s06.login', 'Log in in the browser. Needs Claude Pro, Max, Team, Enterprise or an API (Console) account; the free plan has no Claude Code.', CUE.s06Login, CUE.s06Login + 60, S.s07.from),
   cp('s06.step2', 'STEP 2/3 · Add a skill', CUE.s06Step2 - 10, CUE.s06Step2 + 14, S.s07.from),
-  ui('s06.cmd', 'npx skills add Leonxlnx/cinetic', CUE.s06Type, S.s07.from),
+  ui('s06.cmd', 'npx skills add HaochenSHI66/claude-awesome-video-creation', CUE.s06Type, S.s07.from),
   ui('s06.ok', '✓ Installed 1 skill', CUE.s06Done, S.s07.from - 12),
   // S07
   cp('s07.step3', 'STEP 3/3 · Just ask', S.s07.from + 10, S.s07.from + 34, S.s08.from),
   ui('s07.callout', '← skill loaded: matched by its description', CUE.s07Freeze + 6, CUE.s07FreezeEnd + 60),
-  ui('s07.direct', 'or call it directly:  /cinetic', CUE.s07FreezeEnd + 10, S.s08.from - 10),
+  ui('s07.direct', 'or call it directly:  /claude-awesome-video-creation', CUE.s07FreezeEnd + 10, S.s08.from - 10),
   // S08
   ui('s08.real', 'real time', CUE.s08Strip, CUE.s08Black),
   ui('s08.screen', 'on screen', CUE.s08Strip, CUE.s08Black),
@@ -328,7 +329,7 @@ export const COPY: Copy[] = [
   cp('s12.stop', 'Stop repeating yourself.', CUE.s12Stop, CUE.s12Stop + 30, CUE.s12Fade),
   cp('s12.once', 'Teach it once.', CUE.s12Once, CUE.s12Once + 36, CUE.s12Fade + 50),
   ui('s12.lockup', 'Claude Code · Agent Skills · COMP4431 · SHI Haochen · 24130819D', CUE.s12Lockup, CUE.s12Fade + 50),
-  ui('s12.credit', VO_IS_DRAFT ? 'Made with Claude Code + community skills. Voice: draft TTS, to be replaced.' : 'Made with Claude Code + community skills. Voice: SHI Haochen.', CUE.s12Lockup + 15, CUE.s12Fade + 50),
+  ui('s12.credit', VO_IS_DRAFT ? 'Made with Claude Code + my skill claude-awesome-video-creation (built on cinetic). Voice: draft TTS, to be replaced.' : 'Made with Claude Code + my skill claude-awesome-video-creation (built on cinetic). Voice: SHI Haochen.', CUE.s12Lockup + 15, CUE.s12Fade + 50),
 ];
 
 /** One COPY entry by id. */

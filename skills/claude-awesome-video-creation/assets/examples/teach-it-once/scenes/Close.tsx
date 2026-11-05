@@ -20,7 +20,7 @@ const C_OUT: { t: number; text: string; tone?: string }[] = [
 ];
 const SKILL_LIST: [string, string][] = [
   ['lab-report', 'Writes lab reports from my results.'],
-  ['cinetic', 'Cinematic launch videos in Remotion.'],
+  ['claude-awesome-video-creation', 'Tutorial videos from code.'],
 ];
 
 const hl = (line: string) => {
@@ -138,9 +138,9 @@ export const S10: React.FC = () => {
                   <div style={{ marginTop: 10, padding: '10px 14px', borderRadius: 10, border: `1px solid ${C.line2}`, ...enter(f, askDone, 14, 8, 0) }}>
                     <div style={{ color: C.muted, marginBottom: 6 }}>Skills</div>
                     {SKILL_LIST.map(([nm, d], i) => (
-                      <div key={i} style={{ display: 'flex', gap: 14, marginTop: 4, color: i === 0 ? C.text : C.muted }}>
-                        <span style={{ color: i === 0 ? C.ember : C.muted, fontWeight: 600, width: 180, flexShrink: 0, whiteSpace: 'pre' }}>{i === 0 ? '✓ ' : '  '}{nm}</span>
-                        <span style={{ ...mono(17) }}>{d}</span>
+                      <div key={i} style={{ marginTop: 6, color: i === 0 ? C.text : C.muted }}>
+                        <div style={{ color: i === 0 ? C.ember : C.violet, fontWeight: 600, whiteSpace: 'pre' }}>{i === 0 ? '✓ ' : '  '}{nm}</div>
+                        <div style={{ ...mono(17), color: C.muted, marginLeft: 26 }}>{d}</div>
                       </div>
                     ))}
                   </div>
@@ -303,7 +303,7 @@ const SHEET_HUES = [C.cyan, C.violet, C.gold, C.pink, C.lime];
 const SHEET: { n: string; label: string; cmd: string; sub?: string }[] = [
   { n: '1', label: 'Install', cmd: 'curl -fsSL https://claude.ai/install.sh | bash', sub: 'Windows PowerShell:  irm https://claude.ai/install.ps1 | iex' },
   { n: '2', label: 'Start', cmd: 'cd my-project && claude', sub: 'log in · Pro / Max / Team / Enterprise or API account' },
-  { n: '3', label: 'Add a skill', cmd: 'npx skills add <owner/repo>' },
+  { n: '3', label: 'Add a skill', cmd: 'npx skills add <owner/repo>', sub: 'mine:  npx skills add HaochenSHI66/claude-awesome-video-creation' },
   { n: '4', label: 'Write your own', cmd: '.claude/skills/<name>/SKILL.md', sub: 'the instruction file: name · description (say WHEN) · steps' },
   { n: '5', label: 'Use it', cmd: '/skills   /<name>', sub: 'or just ask: the description triggers it' },
 ];
@@ -433,6 +433,10 @@ export const S12: React.FC = () => {
             <span style={{ ...mono(24, 600), color: C.muted, letterSpacing: '0.14em', alignSelf: 'center', marginRight: 6, opacity: p(f, deep + 58, deep + 72) }}>FOR STUDY</span>
             {DEEP_USE.map(([t, h], i) => <Pill key={i} text={t} hue={h} f={f} at={deep + 62 + i * 6} />)}
           </div>
+          <div style={{ position: 'absolute', left: 0, right: 0, top: 530, textAlign: 'center', ...enter(f, deep + 90, 24, 12, 0) }}>
+            <span style={{ ...sans(26, 600), color: C.gold }}>★ the workflow behind this video, as a skill:  </span>
+            <span style={{ ...mono(28, 700), color: C.cyan }}>github.com/HaochenSHI66/claude-awesome-video-creation</span>
+          </div>
           {/* contact card */}
           <div style={{ position: 'absolute', left: 960, top: 640, transform: `translate(-50%, 0) scale(${0.92 + 0.08 * p(f, mail, mail + 20, EZ.out)})`, opacity: p(f, mail - 4, mail + 14), padding: 2, borderRadius: 22, background: `linear-gradient(100deg, ${C.cyan}, ${C.violet}, ${C.pink})` }}>
             <div style={{ borderRadius: 20, background: a(C.ink, 0.92), padding: '22px 40px', display: 'flex', alignItems: 'center', gap: 26 }}>
@@ -472,7 +476,7 @@ export const S12: React.FC = () => {
           Claude Code · Agent Skills · COMP4431 · SHI Haochen · 24130819D
         </div>
         <div style={{ position: 'absolute', left: 0, right: 0, bottom: 32, textAlign: 'center', ...mono(16), color: a(C.text, 0.4), ...enter(f, lock + 15, 30) }}>
-          {VO_IS_DRAFT ? 'Made with Claude Code + community skills. Turtle mascot: original, generated with Codex. Voice: draft TTS, to be replaced.' : 'Made with Claude Code + community skills. Turtle mascot: original, generated with Codex. Voice: SHI Haochen.'}
+          {VO_IS_DRAFT ? 'Made with Claude Code + my skill claude-awesome-video-creation (built on cinetic). Turtle mascot: original, generated with Codex. Voice: draft TTS, to be replaced.' : 'Made with Claude Code + my skill claude-awesome-video-creation (built on cinetic). Turtle mascot: original, generated with Codex. Voice: SHI Haochen.'}
         </div>
       </AbsoluteFill>
     </AbsoluteFill>

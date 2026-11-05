@@ -148,7 +148,7 @@ const MOVES: Move[] = [
   { at: SCENE.s06.from + 10, dur: 30, ...HOME, face: 1 },
   { at: CUE.s06Cmd1 - 20, dur: 20, ...HOME, face: -1 },
   { at: CUE.s06Step2 + 40, dur: 24, ...HOME, face: 1 },
-  { at: CUE.s07Freeze - 44, dur: 36, x: 1700, y: 600, s: 270, face: -1 },
+  { at: CUE.s07Freeze - 30, dur: 24, ...HOME, face: -1 },
   { at: CUE.s07FreezeEnd + 80, dur: 34, ...HOME, face: 1 },
   { at: SCENE.s08.from - 30, dur: 30, ...OFF },
   { at: SCENE.s10.from + 4, dur: 2, ...OFF },
